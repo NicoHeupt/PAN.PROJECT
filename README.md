@@ -9,3 +9,6 @@ http://fritzing.org/download/
 
 3. 
 
+## Ressources
+(Adalogger Dokumentation)[https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card#]
+-> __chipSelect = 15;__
