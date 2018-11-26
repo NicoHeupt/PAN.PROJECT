@@ -12,3 +12,11 @@ http://fritzing.org/download/
 ## Ressources
 [Adalogger Dokumentation](https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card#)
 -> __chipSelect = 15;__
+
+
+## Servertest
+WebServer on ESP8266 -> Arduino Beispiele HelloServer works
+
+
+# ToDo
+## Lichtsensor
