@@ -8,7 +8,7 @@ https://www.arduino.cc/en/Main/Software
 2. Starting position: 
   - Stack the upper body (Feather Huzzah 8266 Wifi) on the Adalogger.
   - In the Software choose following pre-settings:
-    - WebServer on ESP8266
+    - Select Adafruit Feather HUZZAH ESP8266 from the Tools->Board dropdown
     - Choose correct Port
   - Overview Pinout Adafruit-Feather-Huzzah: https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/pinouts
     
