@@ -1,13 +1,19 @@
 # PAN.PROJECT
 IOT- Projekt VIII
+LICHTSENSOR
 
-1. To start with the Project you have to install the free Software "Fitzing" first.
-Link below:
-http://fritzing.org/download/
+1. Please Install the Arduino Software IDE within the following Link:
+https://www.arduino.cc/en/Main/Software
 
-2. Go to https://github.com/adafruit/Fritzing-Library -> adafruit/Fritzing-Library and get your Adafruit parts (repository) for your Fitzing Software.
-
+2. Starting position: 
+  - Stack the upper body (Feather Huzzah 8266 Wifi) on the Adalogger.
+  - In the Software choose following pre-settings:
+    - WebServer on ESP8266
+    - Choose correct Port
+  - Overview Pinout Adafruit-Feather-Huzzah: https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/pinouts
+    
 3. 
+
 
 ## Ressources
 [Adalogger Dokumentation](https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card#)
