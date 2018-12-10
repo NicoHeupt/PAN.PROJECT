@@ -1,6 +1,21 @@
 # PAN.PROJECT
-IOT- Projekt VIII
-LICHTSENSOR
+<b>IOT- Projekt VIII<b><br />
+<b>LICHTSENSOR<b>
+
+
+
+Getting started with Arduino?
+Wanna get confortable within a easy little Project?<br />
+Degree of difficulty: easy<br />
+<b>Then you´re absolutly right with PAN!<b>
+  
+Here you´ll see a little overview about the Project:<br />
+As already thought the PAN Project is about a light sensor, in which you can control different brightness levels.<br />
+The Client regulate those configurations. Moreover you have the opportunity to manage the Arduino with your Smartphone via WIFI <br />
+
+<b>ANYAWAY, HAVE FUN!<b>
+
+
 
 1. Please Install the Arduino Software IDE within the following Link:
 https://www.arduino.cc/en/Main/Software
