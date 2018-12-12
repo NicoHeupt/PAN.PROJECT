@@ -17,8 +17,7 @@ The Client regulate those configurations. Moreover you have the opportunity to m
 
 
 
-1. Please Install the Arduino Software IDE within the following Link:
-https://www.arduino.cc/en/Main/Software
+1. Please Install the Arduino Software IDE within the following Link: https://www.arduino.cc/en/Main/Software
 
 2. Starting position: 
   - Stack the upper body (Feather Huzzah 8266 Wifi) on the Adalogger.
@@ -27,8 +26,16 @@ https://www.arduino.cc/en/Main/Software
     - Choose correct Port
   - Overview Pinout Adafruit-Feather-Huzzah: https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/pinouts
     
-3. 
+3. Cabling
+  - Please refer to PAN.Project -> Hardware for the Image: https://github.com/NicoHeupt/PAN.PROJECT/tree/master/hardware
 
+4.Coding
+  - Please refer to PAN.Project -> Code: 
+  
+5. Connecting with your Smartphone
+  - Open your Browser and fill in your Ip- Address
+  - Important: Client and Server have to be in the same network.
+  
 
 ## Ressources
 [Adalogger Dokumentation](https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card#)
