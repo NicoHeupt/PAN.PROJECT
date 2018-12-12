@@ -26,13 +26,13 @@ The Client regulate those configurations. Moreover you have the opportunity to m
     - Choose correct Port
   - Overview Pinout Adafruit-Feather-Huzzah: https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/pinouts
     
-3. Cabling
+3. Cabling<br />
   - Please refer to PAN.Project -> Hardware for the Image: https://github.com/NicoHeupt/PAN.PROJECT/tree/master/hardware
 
-4.Coding
+4.Coding<br />
   - Please refer to PAN.Project -> Code: 
   
-5. Connecting with your Smartphone
+5. Connecting with your Smartphone<br />
   - Open your Browser and fill in your Ip- Address
   - Important: Client and Server have to be in the same network.
   
