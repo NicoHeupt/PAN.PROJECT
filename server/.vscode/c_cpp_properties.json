@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\Moshbit\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
+                "C:\\Users\\Moshbit\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.4.2\\**",
+                "C:\\Users\\Moshbit\\AppData\\Local\\Arduino15\\packages\\**",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.17134.0",
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.15.26726/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64",
+            "forcedInclude": []
+        }
+    ],
+    "version": 4
+}
