@@ -8,9 +8,9 @@ const byte ledPin = 4;
 int sensorReading;
 int ledBrightness;
 
-// calculate the value to put out of the analog pin
-// change this function to your needs
+// calculate the value to put through the analog pin
 int calcBrightness(int sensorReading) {
+  // add logic to your
   return sensorReading;
 }
  
@@ -52,6 +52,6 @@ void loop() {
     http.end();   //Close connection
  
   }
-  delay(300);    //Send a request every second
+  delay(300);    //Send a request every 300 milliseconds
  
 }
