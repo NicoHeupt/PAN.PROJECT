@@ -3,13 +3,14 @@
  
 const char* ssid = "Wanderhure";
 const char* password = "3kreuzer";
-const int ledPin = 4;
+const byte ledPin = 4;
 
+int sensorReading;
 int ledBrightness;
 
 // calculate the value to put out of the analog pin
 // change this function to your needs
-byte calcBrightness(byte sensorReading) {
+int calcBrightness(int sensorReading) {
   return sensorReading;
 }
  
@@ -38,14 +39,19 @@ void loop() {
     int httpCode = http.GET();                                                                  //Send the request
  
     if (httpCode > 0) { //Check the returning code
-      String payload = http.getString();   //Get the request response payload
-      //ledBrightness = payload.ToInt();
-      Serial.println(payload);                     //Print the response payload
-      //analogWrite(ledPin, ledBrightness);
+      String payload = http.getString(); //Get the request response payload
+      Serial.println("payload: " + payload);           //Print the response payload
+
+      sensorReading = payload.toInt();
+
+      ledBrightness = calcBrightness(sensorReading);
+      Serial.println("ledBrightness: " + String(ledBrightness));                     //Print the response payload
+
+      analogWrite(ledPin, ledBrightness);
     }
     http.end();   //Close connection
  
   }
-  delay(1000);    //Send a request every second
+  delay(300);    //Send a request every second
  
 }
