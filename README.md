@@ -49,8 +49,46 @@ Connect the LED with a resistor in front of it to pin 4 (labled "SDA" on the Huz
   int getValueDelay = 300;  // milliseconds between http requests
   ```
 * Write your calcBrightness! By default clients will put the recieved brightness value through to the pin. This behaviour can easily be changed to suit your needs. Check the following section to get an idea!
-### calcBrightness examples
-_TODO:_ write a few examples
+
+## Examples for calcBrightness functions
+
+### "crossing the streams": _the darker the sensor, the brighter the led_
+  ```c
+  // inverting sensorReading and brightness
+  int calcBrightness(int sensorReading) {
+    return 1024-sensorReading;
+  }
+  ```
+
+### "tripple threshold": _fixed led brightness for ranges_
+  ```c
+  // three states: on, dimmed, off
+  int calcBrightness(int sensorReading) {
+    if(0 <= sensorReading && sensorReading <= 256) { // if sensor between 0 - 255
+      return 1000;                                   // brightnes is 1000
+    }
+    if(256 <= sensorReading && sensorReading <= 768) {  // if sensor between 0 - 255
+      return 500;                                       // brightnes is 500
+    }
+    else {      // for higher values (or something out of bounds)
+      return 0; // turn led off
+    }
+  }
+  ```
+
+### "recursive rampage": _brave nerds go crazy_
+  ```c
+  // ramp up brightness from sensor reading to max value
+  int calcBrightness(int sensorReading) {
+    int i = sensorReading;
+    if(i <= 1024) {
+      analogWrite(ledPin, i); // changing brightness and delays here
+      delay(5);               // to implement "animations"
+      return calcBrightness(i+2); // calcBrightness calls itself
+    }
+    return 0;
+  }
+  ```
 
 
 # Server
