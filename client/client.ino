@@ -10,7 +10,7 @@ int ledBrightness;
 
 // calculate the value to put through the analog pin
 int calcBrightness(int sensorReading) {
-  // add logic to your
+  // add logic to suit your needs
   return sensorReading;
 }
  
@@ -35,17 +35,18 @@ void loop() {
  
     HTTPClient http;  //Declare an object of class HTTPClient
  
-    http.begin("http://192.168.8.163/sensor");  //Specify request destination
-    int httpCode = http.GET();                                                                  //Send the request
+    http.begin("http://192.168.8.163/brightness");  // server adress (change  to your server's address)
+                                                    // to avoid sensor override by server change /brightness to /sensor 
+    int httpCode = http.GET(); //Send the request
  
-    if (httpCode > 0) { //Check the returning code
-      String payload = http.getString(); //Get the request response payload
-      Serial.println("payload: " + payload);           //Print the response payload
+    if (httpCode > 0) { // if the Return Code isn't >0 the request failed
+
+      String payload = http.getString();     //Get the request response payload
+      Serial.println("payload: " + payload); //Print the response payload
 
       sensorReading = payload.toInt();
-
       ledBrightness = calcBrightness(sensorReading);
-      Serial.println("ledBrightness: " + String(ledBrightness));                     //Print the response payload
+      Serial.println("ledBrightness: " + String(ledBrightness)); //Print the response payload
 
       analogWrite(ledPin, ledBrightness);
     }
