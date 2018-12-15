@@ -1,3 +1,20 @@
+/*
+	Client
+
+  IOT client for ESP8266 that can connect to a Wifi, get a value from
+  a web address and regulates the brightness of an LED by that value.
+
+	The circuit:
+	* Adafruit Feather HUZZAH ESP8266
+	* LED with series resistor
+
+	Created 15. December 2018
+	By the PAN-Gang
+
+	https://github.com/NicoHeupt/PAN.PROJECT
+  
+*/
+
 // Libraries
 #include <ESP8266WiFi.h> // contains functions to use ESP8266's Wifi
 #include <ESP8266HTTPClient.h> // contains functions to use HTTP protocol
