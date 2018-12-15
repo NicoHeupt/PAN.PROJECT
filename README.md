@@ -16,32 +16,11 @@ The Client regulate those configurations. Moreover you have the opportunity to m
 <b>ANYAWAY, HAVE FUN!<b>
 
 
-
-1. Please Install the Arduino Software IDE within the following Link: https://www.arduino.cc/en/Main/Software
-
-2. Starting position: 
-  - Stack the upper body (Feather Huzzah 8266 Wifi) on the Adalogger.
-  - In the Software choose following pre-settings:
-    - Select Adafruit Feather HUZZAH ESP8266 from the Tools->Board dropdown
-    - Choose correct Port
-  - Overview Pinout Adafruit-Feather-Huzzah: https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/pinouts
-    
-3. Cabling<br />
-  - Please refer to PAN.Project -> Hardware for the Image: https://github.com/NicoHeupt/PAN.PROJECT/tree/master/hardware
-
-4.Coding<br />
-  - Please refer to PAN.Project -> Code: 
-  
-5. Connecting with your Smartphone<br />
-  - Open your Browser and fill in your Ip- Address
-  - Important: Client and Server have to be in the same network.
-  
-
-## Ressources
-[Adalogger Dokumentation](https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card#)
--> __chipSelect = 15;__
-
-
+# Prerequisites
+* [Arduino Software IDE](https://www.arduino.cc/en/Main/Software)
+  * follow instructions on [this page](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-arduino-ide) to install driver and board packages
+  * this repo also contains dotfiles and workspace files for [Visual Studio Code](https://code.visualstudio.com/). If you choose to work with VS Code you will still need everything above and also [this extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino).
+* More useful info on the [Adafruit Feather HUZZAH ESP8266](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/overview)
 
 # Client
 The client consists of an Adafruit Feather HUZZAH ESP8266 and an LED as actor. The LED brightness is regulated via [pulse width modulation](https://www.arduino.cc/en/pmwiki.php?n=Reference/AnalogWrite). The Huzzah gets a sensor reading from the server via Wifi and from that calculates a brightness value to put out.
@@ -58,7 +37,7 @@ Connect the LED with a resistor in front of it to pin 4 (labled "SDA" on the Huz
   ```c
   const int ledPin = 4; // the Pin that the LED is connected to
   ```  
-* Set adress to your brightness value. This will normally be `http://ServerIP/brightness`. If you need a value that can't be overridden by the server you can use `http://ServerIP/sensor`.   For more information refer to the [Server section](#Server) of this file
+* Set adress to your brightness value. This will normally be `http://ServerIP/brightness`. If you need a value that can't be overridden by the server you can use `http://ServerIP/sensor`. For more information refer to the [Server section](#Server) of this file
   ```c
   http.begin("http://192.168.0.23/brightness");  // server adress (change to your server's address)
   ```
@@ -70,5 +49,36 @@ Connect the LED with a resistor in front of it to pin 4 (labled "SDA" on the Huz
 ### calcBrightness examples
 _TODO:_ write a few examples
 
+
 # Server
+The client consists of an Adafruit Feather HUZZAH ESP8266 and an photoresistor as sensor. The sensor is connected the analog-to-digital converter (ADC) of the board. The ADC measures the voltage and generates a value between 0 - 1023.
+Whenever a client sends a GET request the server will answer by sending some data. The following handlers are implemented:
+
+| URL                 | Data           |
+| ------------------- | -------------- |
+| ServerIP/sensor     | sensor reading | 
+| ServerIP/brightness | sensor reading or override value, depending on checkbox on / |
+| ServerIP/           | a web interface to enter override |
+
 ## Configuration
+* Enter credentials for your WiFi
+  ```c
+  // WiFi Credentials
+  const char* ssid = "myWifiSSID";    // name of the network
+  const char* password = "myWifiKey"; // WiFi key
+  ```
+* If you use a different board than the Adafruit Feather HUZZAH ESP8266 make sure to have the ADC pin number set
+  ```c
+  const int sensorPin = 0; // the pin that the photoresistor is connected to
+  ```  
+* The IP address will usually be automatically assigned by your Access Point. To find out you servers address you could [scan your network](https://askubuntu.com/a/224567), check the DHCP table of your AP or connect the server to a computer via USB, open a [serial monitor](https://www.arduino.cc/en/Guide/Environment#toc12). You should get a message like this:
+  ```
+  Connected to YourWifi
+  IP address: 192.168.0.42
+  HTTP server started
+  ```
+* You can connect to http://ServerIP with a web browser of any device in the same network. There will be a small interface that shows the sensor reading at the moment of loading the page. You also can set an override for /brightness.
+
+
+## Logging Data on SD card with Adalogger
+[Adalogger](https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card#) support hasn't been implemented yet. You will need to set `chipSelect = 15;`
