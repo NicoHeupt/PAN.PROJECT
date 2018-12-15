@@ -17,15 +17,18 @@ The Client regulate those configurations. Moreover you have the opportunity to m
 
 
 # Prerequisites
-* [Arduino Software IDE](https://www.arduino.cc/en/Main/Software)
+* Download and install the [Arduino Software IDE](https://www.arduino.cc/en/Main/Software)
   * follow instructions on [this page](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-arduino-ide) to install driver and board packages
   * this repo also contains dotfiles and workspace files for [Visual Studio Code](https://code.visualstudio.com/). If you choose to work with VS Code you will still need everything above and also [this extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino).
 * More useful info on the [Adafruit Feather HUZZAH ESP8266](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/overview)
 
 # Client
 The client consists of an Adafruit Feather HUZZAH ESP8266 and an LED as actor. The LED brightness is regulated via [pulse width modulation](https://www.arduino.cc/en/pmwiki.php?n=Reference/AnalogWrite). The Huzzah gets a sensor reading from the server via Wifi and from that calculates a brightness value to put out.
+
 ## Hardware
 Connect the LED with a resistor in front of it to pin 4 (labled "SDA" on the Huzzah). Notice that LEDs (Light Emitting Diodes), as all diodes, only allow current to pass in one direction. It won't work the LED's the wrong way around.
+![](client/client_sketch.png)
+
 ## Configuration
 * Enter credentials for your WiFi
   ```c
@@ -59,6 +62,9 @@ Whenever a client sends a GET request the server will answer by sending some dat
 | ServerIP/sensor     | sensor reading | 
 | ServerIP/brightness | sensor reading or override value, depending on checkbox on / |
 | ServerIP/           | a web interface to enter override |
+
+## Hardware
+![](server/server_sketch.png)
 
 ## Configuration
 * Enter credentials for your WiFi
