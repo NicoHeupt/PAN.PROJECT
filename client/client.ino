@@ -34,15 +34,16 @@ void setup () {
  
   pinMode(ledPin, OUTPUT);
 
-  // Connect to the network
-  Serial.begin(115200); // open a serial interface
-  WiFi.begin(ssid, password); // connect to WiFi
+  Serial.begin(115200); // open serial connection
+
+  // connect to WiFi network
+  WiFi.begin(ssid, password); // connect to Wifi
 
   // try to connect every 300 milliseconds until success
   Serial.print("Connecting..");
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
-    delay(300); 
+    delay(500); 
   }
  
 }

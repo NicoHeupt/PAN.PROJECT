@@ -21,7 +21,6 @@
 
 // Libraries
 #include <ESP8266WiFi.h>
-#include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 
 // WiFi Credentials
@@ -40,13 +39,14 @@ ESP8266WebServer server(80); // declare object of class ESP8266WebServer
 void setup(void)
 {
   pinMode(sensorPin, INPUT); // set analog pin as input 
+
   Serial.begin(115200); // open serial connection
 
   // connect to WiFi network
-  WiFi.begin(ssid, password);
-  Serial.print("\n\r \n\rWorking to connect");
-
+  WiFi.begin(ssid, password); // connect to Wifi
+  
   // try to connect every 500 milliseconds until success
+  Serial.print("Connecting..");
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
     delay(500);
