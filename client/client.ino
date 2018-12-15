@@ -1,27 +1,28 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
+// Libraries
+#include <ESP8266WiFi.h> // contains functions to use ESP8266's Wifi
+#include <ESP8266HTTPClient.h> // contains functions to use HTTP protocol
  
-const char* ssid = "Wanderhure";
-const char* password = "3kreuzer";
-const byte ledPin = 4;
+// WiFi Credentials
+const char* ssid = "Wanderhure";   // name of the network
+const char* password = "3kreuzer"; // WiFi key
 
-int sensorReading;
-int ledBrightness;
+const int ledPin = 4; // the Pin that the LED is connected to
 
-// calculate the value to put through the analog pin
-int calcBrightness(int sensorReading) {
-  // add logic to suit your needs
-  return sensorReading;
-}
- 
+// Global Variables
+int sensorReading; // value as recieved by the server
+int ledBrightness; // value that is put out of the pin
+int getValueDelay = 300;  // milliseconds between http requests
+
 void setup () {
  
   pinMode(ledPin, OUTPUT);
 
-  Serial.begin(115200);
-  WiFi.begin(ssid, password);
+  // Connect to the network
+  Serial.begin(115200); // open a serial interface
+  WiFi.begin(ssid, password); // connect to WiFi
+
+  // try to connect every 300 milliseconds until it's succesful
   Serial.print("Connecting..");
- 
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
     delay(300); 
@@ -31,9 +32,10 @@ void setup () {
  
 void loop() {
  
-  if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
+  // check if WiFi is connected
+  if (WiFi.status() == WL_CONNECTED) {
  
-    HTTPClient http;  //Declare an object of class HTTPClient
+    HTTPClient http;  // declare object of class HTTPClient
  
     http.begin("http://192.168.8.163/brightness");  // server adress (change  to your server's address)
                                                     // to avoid sensor override by server change /brightness to /sensor 
@@ -50,9 +52,15 @@ void loop() {
 
       analogWrite(ledPin, ledBrightness);
     }
-    http.end();   //Close connection
+    http.end(); // close connection
  
   }
-  delay(300);    //Send a request every 300 milliseconds
+  delay(getValueDelay); // wait for x milliseconds
  
+}
+
+// calculate what is written to the pin
+int calcBrightness(int sensorReading) {
+  // add logic to suit your needs
+  return sensorReading;
 }
