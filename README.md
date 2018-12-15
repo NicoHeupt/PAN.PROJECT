@@ -42,9 +42,33 @@ The Client regulate those configurations. Moreover you have the opportunity to m
 -> __chipSelect = 15;__
 
 
-## Servertest
-WebServer on ESP8266 -> Arduino Beispiele HelloServer works
 
+# Client
+The client consists of an Adafruit Feather HUZZAH ESP8266 and an LED as actor. The LED brightness is regulated via [pulse width modulation](https://www.arduino.cc/en/pmwiki.php?n=Reference/AnalogWrite). The Huzzah gets a sensor reading from the server via Wifi and from that calculates a brightness value to put out.
+## Hardware
+Connect the LED with a resistor in front of it to pin 4 (labled "SDA" on the Huzzah). Notice that LEDs (Light Emitting Diodes), as all diodes, only allow current to pass in one direction. It won't work the LED's the wrong way around.
+## Configuration
+* Enter credentials for your WiFi
+  ```c
+  // WiFi Credentials
+  const char* ssid = "myWifiSSID";    // name of the network
+  const char* password = "myWifiKey"; // WiFi key
+  ```
+* If you use a different board than the Adafruit Feather HUZZAH ESP8266 make sure to have the correct pin number and set ledPin accordingly
+  ```c
+  const int ledPin = 4; // the Pin that the LED is connected to
+  ```  
+* Set adress to your brightness value. This will normally be `http://ServerIP/brightness`. If you need a value that can't be overridden by the server you can use `http://ServerIP/sensor`.   For more information refer to the [Server section](#Server) of this file
+  ```c
+  http.begin("http://192.168.0.23/brightness");  // server adress (change to your server's address)
+  ```
+* Set how often this client gets the brightness value. from the server
+  ```c
+  int getValueDelay = 300;  // milliseconds between http requests
+  ```
+* Write your calcBrightness! By default clients will put the recieved brightness value through to the pin. This behaviour can easily be changed to suit your needs. Check the following section to get an idea!
+### calcBrightness examples
+_TODO:_ write a few examples
 
-# ToDo
-## Lichtsensor
+# Server
+## Configuration
