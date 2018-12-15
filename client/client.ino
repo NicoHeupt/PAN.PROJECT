@@ -12,7 +12,7 @@
 	By the PAN-Gang
 
 	https://github.com/NicoHeupt/PAN.PROJECT
-  
+
 */
 
 // Libraries
@@ -38,7 +38,7 @@ void setup () {
   Serial.begin(115200); // open a serial interface
   WiFi.begin(ssid, password); // connect to WiFi
 
-  // try to connect every 300 milliseconds until it's succesful
+  // try to connect every 300 milliseconds until success
   Serial.print("Connecting..");
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
@@ -60,14 +60,13 @@ void loop() {
  
     if (httpCode > 0) { // if the Return Code isn't >0 the request failed
 
-      String payload = http.getString();     //Get the request response payload
-      Serial.println("payload: " + payload); //Print the response payload
+      String payload = http.getString();     // get the request response payload as String
+      Serial.println("payload: " + payload);
+      sensorReading = payload.toInt();       // convert payload string to an int
+      ledBrightness = calcBrightness(sensorReading); // calculate brightness from payload
+      Serial.println("ledBrightness: " + String(ledBrightness));
 
-      sensorReading = payload.toInt();
-      ledBrightness = calcBrightness(sensorReading);
-      Serial.println("ledBrightness: " + String(ledBrightness)); //Print the response payload
-
-      analogWrite(ledPin, ledBrightness);
+      analogWrite(ledPin, ledBrightness); // write ledBrightness to the pin
     }
     http.end(); // close connection
  
