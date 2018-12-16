@@ -44,7 +44,14 @@ Connect the LED with a resistor in front of it to pin 4 (labled "SDA" on the Huz
 
 ## Examples for calcBrightness functions
 
-### "crossing the streams": _the darker the sensor, the brighter the led_
+### Default: _the brighter the sensor, the brighter the led_
+  ```c
+  int calcBrightness(int sensorReading) {
+    return sensorReading; // just pass the value through
+  }
+  ```
+
+### "Crossing the Streams": _the darker the sensor, the brighter the led_
   ```c
   // inverting sensorReading and brightness
   int calcBrightness(int sensorReading) {
@@ -104,7 +111,7 @@ If it recieves a request to root it returns some html of a webinterface by a bro
 
   The latter two can be set by the client via arguments. Notice how in the screenshot it says `?over=on&overVal=905` behind the URL. This means the client is sending the argument `over` (meaning override) with the value `on` and the argument `overVal` with the value `905`.
 
-  The server will use set values as it's new settings for override.
+  The server will use these values as it's new settings for override.
 
 ## Hardware
 ![](server/server_sketch.png)
