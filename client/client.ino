@@ -39,7 +39,7 @@ void setup () {
   // connect to WiFi network
   WiFi.begin(ssid, password); // connect to Wifi
 
-  // try to connect every 300 milliseconds until success
+  // try to connect every 500 milliseconds until success
   Serial.print("Connecting..");
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
