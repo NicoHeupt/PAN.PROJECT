@@ -1,5 +1,7 @@
 # PAN.PROJECT (IOT Project VIII)
 
+![](misc/concept-drawing.jpg)
+
 PAN.PROJECT is a small IOT demonstration to show how communication between small physical devices via Wifi can be done on the Arduino platform.
 
 The goals are as follows:
@@ -138,3 +140,7 @@ If it recieves a request to root it returns some html of a webinterface by a bro
 
 ## Logging Data on SD card with Adalogger
 [Adalogger](https://learn.adafruit.com/adafruit-feather-m0-adalogger/using-the-sd-card#) support hasn't been implemented yet. You will need to set `chipSelect = 15;`
+
+# License
+* Icons in [concept drawing](misc/concept-drawing.jpg) made by [Flat Icon](https://www.flaticon.com/authors/flat-icons) and [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com
+* The rest is made by the PAN-PROJECT Team and falls under [MIT License](LICENSE)
