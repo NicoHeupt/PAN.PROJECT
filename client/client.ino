@@ -20,8 +20,8 @@
 #include <ESP8266HTTPClient.h> // contains functions to use HTTP protocol
  
 // WiFi Credentials
-const char* ssid = "Wanderhure";   // name of the network
-const char* password = "3kreuzer"; // WiFi key
+const char* ssid = "YourSSID";   // name of the network
+const char* password = "YourPw"; // WiFi key
 
 const int ledPin = 4; // the Pin that the LED is connected to
 

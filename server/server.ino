@@ -24,8 +24,8 @@
 #include <ESP8266WebServer.h>
 
 // WiFi Credentials
-const char* ssid = "Wanderhure";
-const char* password = "3kreuzer";
+const char* ssid = "YourSSID";
+const char* password = "YourPw";
 
 const int sensorPin = 0; // the pin that the photoresistor is connected to
 
