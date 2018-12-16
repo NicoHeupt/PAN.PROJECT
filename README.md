@@ -1,25 +1,17 @@
-# PAN.PROJECT
-<b>IOT- Projekt VIII<b><br />
-<b>LICHTSENSOR<b>
+# PAN.PROJECT (IOT Project VIII)
 
+PAN.PROJECT is a small IOT demonstration to show how communication between small physical devices via Wifi can be done on the Arduino platform.
 
-
-Getting started with Arduino?
-Wanna get confortable within a easy little Project?<br />
-Degree of difficulty: easy<br />
-<b>Then you´re absolutly right with PAN!<b>
-  
-Here you´ll see a little overview about the Project:<br />
-As already thought the PAN Project is about a light sensor, in which you can control different brightness levels.<br />
-The Client regulate those configurations. Moreover you have the opportunity to manage the Arduino with your Smartphone via WIFI <br />
-
-<b>ANYAWAY, HAVE FUN!<b>
-
+The goals are as follows:
+* have a device that acts as an server and sends some data over a wireless network, that is based on sensor readings. The sensor will be photoresistor ("light sensor") in our example. Also have webinterface to read out the sensor and send a override value by choice.
+* have one or more devices that act as clients. They will get the sensor value from the server and adjust the brightness of an LED according to that.
 
 # Prerequisites
+* at least two [Adafruit Feather HUZZAH ESP8266](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/overview), a sensor (we use a photoresistor), an actor (we use an LED) and some resistors and wire.
 * Download and install the [Arduino Software IDE](https://www.arduino.cc/en/Main/Software)
   * follow instructions on [this page](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-arduino-ide) to install driver and board packages
   * this repo also contains dotfiles and workspace files for [Visual Studio Code](https://code.visualstudio.com/). If you choose to work with VS Code you will still need everything above and also [this extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino).
+* Basic understanding of electronic circuits and computer networks are helpful
 * More useful info on the [Adafruit Feather HUZZAH ESP8266](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/overview)
 
 # Client
@@ -95,11 +87,24 @@ Connect the LED with a resistor in front of it to pin 4 (labled "SDA" on the Huz
 The client consists of an Adafruit Feather HUZZAH ESP8266 and an photoresistor as sensor. The sensor is connected the analog-to-digital converter (ADC) of the board. The ADC measures the voltage and generates a value between 0 - 1023.
 Whenever a client sends a GET request the server will answer by sending some data. The following handlers are implemented:
 
-| URL                 | Data           |
+| URL                 | Data sent      |
 | ------------------- | -------------- |
 | ServerIP/sensor     | sensor reading | 
 | ServerIP/brightness | sensor reading or override value, depending on checkbox on / |
 | ServerIP/           | a web interface to enter override |
+
+So if the server recieves a GET request with /sensor or /brightness will return a value as plain text.
+
+If it recieves a request to root it returns some html of a webinterface by a browser. This html code also contains three values:
+  * the current sensor reading (we get that directly from the pin at the moment the handler is called)
+  * the setting if an override should be sent (represented by a checkbox)
+  * the value for an override
+
+    ![](server/screenshot_webinterface.png)
+
+  The latter two can be set by the client via arguments. Notice how in the screenshot it says `?over=on&overVal=905` behind the URL. This means the client is sending the argument `over` (meaning override) with the value `on` and the argument `overVal` with the value `905`.
+
+  The server will use set values as it's new settings for override.
 
 ## Hardware
 ![](server/server_sketch.png)
